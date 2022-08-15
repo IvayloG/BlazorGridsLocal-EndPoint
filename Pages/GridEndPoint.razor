@@ -1,0 +1,31 @@
+@page "/grid-end-point"
+@inject NortwindSwagger.NortwindSwaggerService nortwindSwaggerService
+
+<div class="row-layout grid-end-point-container">
+    <IgbDataGrid DataSource="nortwindSwaggerEmployees" Density="ControlDisplayDensity.Cosy" AutoGenerateColumns="false" SelectionMode="GridSelectionMode.None" DefaultColumnMinWidth="136" class="grid" grid-end-point-scope>
+        <IgbNumericColumn HeaderText="employeeID" Field="EmployeeID"></IgbNumericColumn>
+        <IgbTextColumn HeaderText="lastName" Field="LastName"></IgbTextColumn>
+        <IgbTextColumn HeaderText="firstName" Field="FirstName"></IgbTextColumn>
+        <IgbTextColumn HeaderText="title" Field="Title"></IgbTextColumn>
+        <IgbTextColumn HeaderText="titleOfCourtesy" Field="TitleOfCourtesy"></IgbTextColumn>
+        <IgbTextColumn HeaderText="birthDate" Field="BirthDate"></IgbTextColumn>
+        <IgbTextColumn HeaderText="hireDate" Field="HireDate"></IgbTextColumn>
+        <IgbTextColumn HeaderText="street" Field="Address.Street"></IgbTextColumn>
+        <IgbTextColumn HeaderText="city" Field="Address.City"></IgbTextColumn>
+        <IgbTextColumn HeaderText="region" Field="Address.Region"></IgbTextColumn>
+        <IgbTextColumn HeaderText="postalCode" Field="Address.PostalCode"></IgbTextColumn>
+        <IgbTextColumn HeaderText="country" Field="Address.Country"></IgbTextColumn>
+        <IgbTextColumn HeaderText="phone" Field="Address.Phone"></IgbTextColumn>
+        <IgbTextColumn HeaderText="notes" Field="Notes"></IgbTextColumn>
+        <IgbTextColumn HeaderText="avatarUrl" Field="AvatarUrl"></IgbTextColumn>
+    </IgbDataGrid>
+</div>
+
+@code {
+    private NortwindSwagger.EmployeesType[] nortwindSwaggerEmployees = Array.Empty<NortwindSwagger.EmployeesType>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        nortwindSwaggerEmployees = await this.nortwindSwaggerService.GetEmployees() ?? nortwindSwaggerEmployees;
+    }
+}

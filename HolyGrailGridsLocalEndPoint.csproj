@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>HolyGrailGridsLocalEndPoint</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="IgniteUI.Blazor" Version="22.1.41" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Shared/MainLayout.razor.css" CssScope="master-view-scope" />
+    <None Update="Pages/View1.razor.css" CssScope="view-1-scope" />
+    <None Update="Pages/GridEndPoint.razor.css" CssScope="grid-end-point-scope" />
+    <None Update="Pages/GridLocalData.razor.css" CssScope="grid-local-data-scope" />
+  </ItemGroup>
+</Project>

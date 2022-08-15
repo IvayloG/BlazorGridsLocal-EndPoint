@@ -1,0 +1,31 @@
+@page "/grid-local-data"
+@inject Northwind.NorthwindService northwindService
+
+<div class="row-layout grid-local-data-container">
+    <IgbDataGrid DataSource="northwindEmployees" Density="ControlDisplayDensity.Cosy" AutoGenerateColumns="false" SelectionMode="GridSelectionMode.None" DefaultColumnMinWidth="136" class="grid" grid-local-data-scope>
+        <IgbNumericColumn HeaderText="employeeID" Field="EmployeeID"></IgbNumericColumn>
+        <IgbTextColumn HeaderText="lastName" Field="LastName"></IgbTextColumn>
+        <IgbTextColumn HeaderText="firstName" Field="FirstName"></IgbTextColumn>
+        <IgbTextColumn HeaderText="title" Field="Title"></IgbTextColumn>
+        <IgbTextColumn HeaderText="titleOfCourtesy" Field="TitleOfCourtesy"></IgbTextColumn>
+        <IgbDateTimeColumn HeaderText="birthDate" Field="BirthDate"></IgbDateTimeColumn>
+        <IgbDateTimeColumn HeaderText="hireDate" Field="HireDate"></IgbDateTimeColumn>
+        <IgbTextColumn HeaderText="street" Field="Address.Street"></IgbTextColumn>
+        <IgbTextColumn HeaderText="city" Field="Address.City"></IgbTextColumn>
+        <IgbTextColumn HeaderText="region" Field="Address.Region"></IgbTextColumn>
+        <IgbTextColumn HeaderText="postalCode" Field="Address.PostalCode"></IgbTextColumn>
+        <IgbTextColumn HeaderText="country" Field="Address.Country"></IgbTextColumn>
+        <IgbTextColumn HeaderText="phone" Field="Address.Phone"></IgbTextColumn>
+        <IgbTextColumn HeaderText="notes" Field="Notes"></IgbTextColumn>
+        <IgbTextColumn HeaderText="avatarUrl" Field="AvatarUrl"></IgbTextColumn>
+    </IgbDataGrid>
+</div>
+
+@code {
+    private Northwind.EmployeesType[] northwindEmployees = Array.Empty<Northwind.EmployeesType>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        northwindEmployees = await this.northwindService.GetEmployees() ?? northwindEmployees;
+    }
+}
